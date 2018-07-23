@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CPython",
+        "repositoryURL": "/Users/gabriel/Work/Personal/SwiftHeroProtocol/CPython",
+        "state": {
+          "branch": null,
+          "revision": "ee21040a85042d2340f7ef99c94fdbcf429518ff",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
