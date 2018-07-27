@@ -1,3 +1,2 @@
 # PythonBridge
-
-A description of this package.
+Swift Python Bridge
