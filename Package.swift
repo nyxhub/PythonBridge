@@ -24,20 +24,4 @@ let package = Package(
             name: "PythonBridge",
             dependencies: ["CPython"]),
     ]
-
-//    name: "CPython",
-//    products: [
-//        // Products define the executables and libraries produced by a package, and make them visible to other packages.
-//
-//    ],
-//    targets: [
-//        .systemLibrary(
-//            name: "CPython",
-//            pkgConfig: "python-2.7",
-//            providers: [
-//                .brew(["python"]),
-//                .apt(["python"]),
-//                ]
-//            ),
-//    ]
 )
