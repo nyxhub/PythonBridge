@@ -82,7 +82,7 @@ final class PyReference {
 /// Internally, `PythonObject` is implemented as a reference-counted pointer to
 /// a Python C API `PyObject`.
 @dynamicMemberLookup
-@_fixed_layout
+@frozen
 public struct PythonObject {
     /// The underlying `PyReference`.
     fileprivate var reference: PyReference
@@ -247,7 +247,7 @@ private func throwPythonErrorIfPresent() throws {
 /// A `PythonObject` wrapper that enables throwing method calls.
 /// Exceptions produced by Python functions are reflected as Swift errors and
 /// thrown.
-@_fixed_layout
+@frozen
 public struct ThrowingPythonObject {
     private var base: PythonObject
     
@@ -404,7 +404,7 @@ public extension PythonObject {
 /// Member access operations return an `Optional` result. When member access
 /// fails, `nil` is returned.
 @dynamicMemberLookup
-@_fixed_layout
+@frozen
 public struct CheckingPythonObject {
     /// The underlying `PythonObject`.
     private var base: PythonObject
@@ -652,7 +652,7 @@ public let Python = PythonInterface()
 /// - Note: It is not intended for `PythonInterface` to be initialized
 ///   directly. Instead, please use the global instance of `PythonInterface`
 ///   called `Python`.
-@_fixed_layout
+@frozen
 @dynamicMemberLookup
 public struct PythonInterface {
     /// A dictionary of the Python builtins.
@@ -1157,11 +1157,12 @@ extension PythonObject : Equatable, Comparable, Hashable {
         return lhs.compared(to: rhs, byOp: Py_GE)
     }
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         guard let hash = Int(self.__hash__.call()) else {
             fatalError("Cannot use '__hash__' on \(self)")
         }
-        return hash
+        
+        hasher.combine(hash)
     }
 }
 
